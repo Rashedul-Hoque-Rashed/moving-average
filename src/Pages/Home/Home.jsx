@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 const Home = () => {
     const times = ['5 Minutes', '10 Minutes', '15 Minutes', '30 Minutes', '1 Hour', '1 Day'];
     const [focusedButton, setFocusedButton] = useState('5 Minutes');
@@ -33,6 +34,7 @@ const Home = () => {
                     </button>
                 ))}
             </div>
+            
         </div>
     );
 };
