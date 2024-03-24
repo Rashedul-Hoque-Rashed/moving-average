@@ -18,7 +18,6 @@ const Home = () => {
     const handleFocus = (time) => {
         setFocusedButton(time);
     };
-    console.log(focusedButton);
 
     return (
         <div>
