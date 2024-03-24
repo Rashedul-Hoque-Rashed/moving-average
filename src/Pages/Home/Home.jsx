@@ -26,7 +26,7 @@ const Home = () => {
                     <button 
                         key={index} 
                         autoFocus={time === '5 Minutes'} 
-                        className={`text-xs font-semibold py-2 px-6 rounded-lg outline-none ${focusedButton === time ? 'text-white bg-[#387ED1]' : 'text-[#9babc6]'}`}
+                        className={`text-xs font-semibold py-2 px-3 md:px-6 rounded-lg outline-none ${focusedButton === time ? 'text-white bg-[#387ED1]' : 'text-[#9babc6]'}`}
                         onFocus={() => handleFocus(time)}
                     >
                         {focusedButton === time ? time : formatButtonText(time).toLowerCase()}
