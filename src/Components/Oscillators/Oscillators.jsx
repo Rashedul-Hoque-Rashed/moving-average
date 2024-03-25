@@ -2,11 +2,118 @@ import info from '../../assets/icon.gif'
 import graphsImg from '../../assets/bar_oscillator.ed2bf1c3.svg'
 import pointerImg from '../../assets/pointer.c2b2a6c5.svg'
 import { useState } from 'react';
+import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 // eslint-disable-next-line react/prop-types
-const Oscillators = ({focusedButton}) => {
+const Oscillators = ({ focusedButton }) => {
 
     const [showTooltip, setShowTooltip] = useState(false);
+    const [viewDetails, setViewDetails] = useState(false);
+
+    const data = [
+        {
+            name: 'RSI (14)',
+            symbol: 'N',
+            minData5: 40.38,
+            minData10: 46.95,
+            minData15: 51.51,
+            minData30: 55.85,
+            hourData1: 58.31,
+            dayData1: 51.48
+        },
+        {
+            name: 'Stoch.%K (14, 3, 3)',
+            symbol: 'N',
+            minData5: 14.54,
+            minData10: 14.54,
+            minData15: 16.92,
+            minData30: 66.41,
+            hourData1: 66.41,
+            dayData1: 47.35
+        },
+        {
+            name: 'CCI (20)',
+            symbol: 'N',
+            minData5: -97.47,
+            minData10: -79.31,
+            minData15: -32.52,
+            minData30: 51.64,
+            hourData1: 76.55,
+            dayData1: -43.90
+        },
+        {
+            name: 'ADX (14)',
+            symbol: 'N',
+            minData5: 26.67,
+            minData10: 18.59,
+            minData15: 13.57,
+            minData30: 12.79,
+            hourData1: 16.02,
+            dayData1: 16.19,
+        },
+        {
+            name: 'Awesome Osc.',
+            symbol: 'S',
+            minData5: -18.79,
+            minData10: 25.60,
+            minData15: 67.30,
+            minData30: 105.57,
+            hourData1: 133.74,
+            dayData1: -96.92,
+        },
+        {
+            name: 'Momentum (10)',
+            symbol: 'B',
+            minData5: -396.80,
+            minData10: 77.20,
+            minData15: 44.35,
+            minData30: -15.70,
+            hourData1: -13.35,
+            dayData1: -52.20,
+        },
+        {
+            name: 'Macd (12, 26, 9)',
+            symbol: 'S',
+            minData5: 14.42,
+            minData10: 35.51,
+            minData15: 39.81,
+            minData30: 24.23,
+            hourData1: 11.71,
+            dayData1: -1.74,
+        },
+        {
+            name: 'Stoch. RSI Fast (3, 3, 14, 14)',
+            symbol: 'N',
+            minData5: 8.39,
+            minData10: 0.97,
+            minData15: 12.81,
+            minData30: 46.62,
+            hourData1: 60.48,
+            dayData1: 10.72,
+        },
+        {
+            name: 'Williams %Range (14)',
+            symbol: 'N',
+            minData5: -85.46,
+            minData10: -85.46,
+            minData15: -83.08,
+            minData30: -33.59,
+            hourData1: -33.59,
+            dayData1: -52.65,
+        },
+        {
+            name: 'Ultimate Osc. (7, 14, 28)',
+            symbol: 'N',
+            minData5: 40.59,
+            minData10: 39.97,
+            minData15: 45.33,
+            minData30: 51.01,
+            hourData1: 59.80,
+            dayData1: 55.75,
+        },
+    ]
+
+    const displayedData = viewDetails ? data : data.slice(0, 2);
 
     return (
         <div className='bg-white p-6 rounded-md'>
@@ -39,43 +146,19 @@ const Oscillators = ({focusedButton}) => {
                     <button className='text-[#034de6] bg-[#e3ecff] text-xs rounded-md py-1 px-4'>Bullish</button>
                 </div>
             </div>
-            <div className='grid grid-cols-3 gap-x-10 gap-y-3 justify-between w-80 mx-auto my-4'>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? 22108.15 : focusedButton === '10 Minutes' ? 22098.53 : focusedButton === '15 Minutes' ? 22086.10 : focusedButton === '30 Minutes' ? 22053.62 : focusedButton === '1 Hour' ? 22017.77 : 22076.49
+            <div className='w-80 mx-auto my-8 relative'>
+                {
+                    displayedData.map((value, index) => <div key={index} className='flex justify-between items-center text-xs mb-3'>
+                        <div className='flex gap-3 items-center'>
+                            <button className={`p-1 bg-gray-500 rounded-md ${value.symbol === 'N' ? 'text-[#000] bg-[#ececec]' : value.symbol === 'S' ? 'text-[#eb1d54] bg-[#fddfe9]' : 'text-[#387ed1] bg-[#eeeeff]'}`}>{value.symbol}</button>
+                            <p>{value.name}</p>
+                        </div>
+                        <p>{
+                        focusedButton === '5 Minutes' ? value?.minData5 : focusedButton === '10 Minutes' ? value?.minData10 : focusedButton === '15 Minutes' ? value?.minData15 : focusedButton === '30 Minutes' ? value?.minData30 : focusedButton === '1 Hour' ? value?.hourData1 : value?.dayData1
                     }</p>
-                    <p className='text-xs text-[#9babc6]'>EMA (20)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? 22115.62 : focusedButton === '10 Minutes' ? 22104.85 : focusedButton === '15 Minutes' ? 22090.76 : focusedButton === '30 Minutes' ? 22051.08 : focusedButton === '1 Hour' ? 21987.83 : 22159.61
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>SMA (20)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? 40.38 : focusedButton === '10 Minutes' ? 46.95 : focusedButton === '15 Minutes' ? 51.51 : focusedButton === '30 Minutes' ? 55.85 : focusedButton === '1 Hour' ? 58.31 : 51.48
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>RSI (14)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? -18.79 : focusedButton === '10 Minutes' ? 25.60 : focusedButton === '15 Minutes' ? 67.30 : focusedButton === '30 Minutes' ? 105.57 : focusedButton === '1 Hour' ? 133.74 : -96.92
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>Awesome Osc.</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? -1.74 : focusedButton === '10 Minutes' ? 11.71 : focusedButton === '15 Minutes' ? 24.23 : focusedButton === '30 Minutes' ? 39.81 : focusedButton === '1 Hour' ? 35.51 : 14.42
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>Macd (12, 26, 9)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? -97.47 : focusedButton === '10 Minutes' ? -79.31 : focusedButton === '15 Minutes' ? -32.52 : focusedButton === '30 Minutes' ? 51.64 : focusedButton === '1 Hour' ? 76.55 : -43.90
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>CCI (20)</p>
-                </div>
+                    </div>)
+                }
+                <button onClick={() => setViewDetails(!viewDetails)} className='text-sm text-[#9babc6] font-semibold hover:text-[#387ed1] flex gap-1 items-center absolute -bottom-10 -right-6'>{viewDetails ? 'View Less' : 'View Details'} {viewDetails ? <FaAngleUp className='w-5 h-5'/> : <FaAngleDown className='w-5 h-5'/>} </button>
             </div>
         </div>
     );
