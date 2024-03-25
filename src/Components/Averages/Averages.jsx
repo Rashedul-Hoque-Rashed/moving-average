@@ -1,8 +1,117 @@
+import { useState } from 'react';
 import graphsImg from '../../assets/bar_ma.1ee3ecd8.svg'
 import pointerImg from '../../assets/pointer.c2b2a6c5.svg'
+import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 
 // eslint-disable-next-line react/prop-types
 const Averages = ({focusedButton}) => {
+
+    const [viewDetails, setViewDetails] = useState(false);
+
+    const data = [
+        {
+            name: 'RSI (14)',
+            symbol: 'N',
+            minData5: 38.38,
+            minData10: 36.95,
+            minData15: 53.51,
+            minData30: 43.85,
+            hourData1: 48.31,
+            dayData1: 55.48
+        },
+        {
+            name: 'Stoch.%K (14, 3, 3)',
+            symbol: 'N',
+            minData5: 12.54,
+            minData10: 13.54,
+            minData15: 15.92,
+            minData30: 56.41,
+            hourData1: 46.41,
+            dayData1: 57.35
+        },
+        {
+            name: 'CCI (20)',
+            symbol: 'N',
+            minData5: -87.47,
+            minData10: -89.31,
+            minData15: -24.52,
+            minData30: 41.64,
+            hourData1: 66.55,
+            dayData1: -53.90
+        },
+        {
+            name: 'ADX (14)',
+            symbol: 'N',
+            minData5: 28.67,
+            minData10: 20.59,
+            minData15: 17.57,
+            minData30: 11.79,
+            hourData1: 17.02,
+            dayData1: 15.19,
+        },
+        {
+            name: 'Awesome Osc.',
+            symbol: 'S',
+            minData5: -15.79,
+            minData10: 27.60,
+            minData15: 65.30,
+            minData30: 110.57,
+            hourData1: 145.74,
+            dayData1: -97.92,
+        },
+        {
+            name: 'Momentum (10)',
+            symbol: 'B',
+            minData5: -376.80,
+            minData10: 88.20,
+            minData15: 52.35,
+            minData30: -22.70,
+            hourData1: -15.35,
+            dayData1: -49.20,
+        },
+        {
+            name: 'Macd (12, 26, 9)',
+            symbol: 'S',
+            minData5: 16.42,
+            minData10: 37.51,
+            minData15: 42.81,
+            minData30: 28.23,
+            hourData1: 14.71,
+            dayData1: -2.74,
+        },
+        {
+            name: 'Stoch. RSI Fast (3, 3, 14, 14)',
+            symbol: 'N',
+            minData5: 9.39,
+            minData10: 1.97,
+            minData15: 17.81,
+            minData30: 42.62,
+            hourData1: 68.48,
+            dayData1: 9.72,
+        },
+        {
+            name: 'Williams %Range (14)',
+            symbol: 'N',
+            minData5: -87.46,
+            minData10: -83.46,
+            minData15: -84.08,
+            minData30: -35.59,
+            hourData1: -37.59,
+            dayData1: -62.65,
+        },
+        {
+            name: 'Ultimate Osc. (7, 14, 28)',
+            symbol: 'N',
+            minData5: 56.59,
+            minData10: 42.97,
+            minData15: 48.33,
+            minData30: 53.01,
+            hourData1: 58.80,
+            dayData1: 61.75,
+        },
+    ]
+
+    const displayedData = viewDetails ? data : data.slice(0, 2);
 
     return (
         <div className='bg-white p-6 rounded-md'>
@@ -33,43 +142,19 @@ const Averages = ({focusedButton}) => {
                     <button className='text-[#018ee8] bg-[#e0f3ff] text-xs rounded-md py-1 px-4'>Bullish</button>
                 </div>
             </div>
-            <div className='grid grid-cols-3 gap-x-10 gap-y-3 justify-between w-80 mx-auto my-4'>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? 22108.15 : focusedButton === '10 Minutes' ? 22098.53 : focusedButton === '15 Minutes' ? 22086.10 : focusedButton === '30 Minutes' ? 22053.62 : focusedButton === '1 Hour' ? 22017.77 : 22076.49
+            <div className='w-80 mx-auto my-8 relative'>
+                {
+                    displayedData.map((value, index) => <div key={index} className='flex justify-between items-center text-xs mb-3'>
+                        <div className='flex gap-3 items-center'>
+                            <button className={`p-1 bg-gray-500 rounded-md ${value.symbol === 'N' ? 'text-[#000] bg-[#ececec]' : value.symbol === 'S' ? 'text-[#eb1d54] bg-[#fddfe9]' : 'text-[#387ed1] bg-[#eeeeff]'}`}>{value.symbol}</button>
+                            <p>{value.name}</p>
+                        </div>
+                        <p>{
+                        focusedButton === '5 Minutes' ? value?.minData5 : focusedButton === '10 Minutes' ? value?.minData10 : focusedButton === '15 Minutes' ? value?.minData15 : focusedButton === '30 Minutes' ? value?.minData30 : focusedButton === '1 Hour' ? value?.hourData1 : value?.dayData1
                     }</p>
-                    <p className='text-xs text-[#9babc6]'>EMA (20)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? 22115.62 : focusedButton === '10 Minutes' ? 22104.85 : focusedButton === '15 Minutes' ? 22090.76 : focusedButton === '30 Minutes' ? 22051.08 : focusedButton === '1 Hour' ? 21987.83 : 22159.61
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>SMA (20)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? 40.38 : focusedButton === '10 Minutes' ? 46.95 : focusedButton === '15 Minutes' ? 51.51 : focusedButton === '30 Minutes' ? 55.85 : focusedButton === '1 Hour' ? 58.31 : 51.48
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>RSI (14)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? -18.79 : focusedButton === '10 Minutes' ? 25.60 : focusedButton === '15 Minutes' ? 67.30 : focusedButton === '30 Minutes' ? 105.57 : focusedButton === '1 Hour' ? 133.74 : -96.92
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>Awesome Osc.</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? -1.74 : focusedButton === '10 Minutes' ? 11.71 : focusedButton === '15 Minutes' ? 24.23 : focusedButton === '30 Minutes' ? 39.81 : focusedButton === '1 Hour' ? 35.51 : 14.42
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>Macd (12, 26, 9)</p>
-                </div>
-                <div className='text-start'>
-                    <p className='text-xs'>{
-                        focusedButton === '5 Minutes' ? -97.47 : focusedButton === '10 Minutes' ? -79.31 : focusedButton === '15 Minutes' ? -32.52 : focusedButton === '30 Minutes' ? 51.64 : focusedButton === '1 Hour' ? 76.55 : -43.90
-                    }</p>
-                    <p className='text-xs text-[#9babc6]'>CCI (20)</p>
-                </div>
+                    </div>)
+                }
+                <button onClick={() => setViewDetails(!viewDetails)} className='text-sm text-[#9babc6] font-semibold hover:text-[#387ed1] flex gap-1 items-center absolute -bottom-10 -right-6'>{viewDetails ? 'View Less' : 'View Details'} {viewDetails ? <FaAngleUp className='w-5 h-5'/> : <FaAngleDown className='w-5 h-5'/>} </button>
             </div>
         </div>
     );
