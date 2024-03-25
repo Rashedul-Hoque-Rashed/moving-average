@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Summary from '../../Components/Summary/Summary';
 import Support from '../../Components/Support/Support';
 import Averages from '../../Components/Averages/Averages';
+import Oscillators from '../../Components/Oscillators/Oscillators';
 
 
 const Home = () => {
@@ -41,6 +42,7 @@ const Home = () => {
                 <Summary focusedButton={focusedButton} />
                 <Support focusedButton={focusedButton} />
                 <Averages focusedButton={focusedButton} />
+                <Oscillators focusedButton={focusedButton} />
             </div>
         </div>
     );
