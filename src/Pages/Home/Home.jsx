@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Summary from '../../Components/Summary/Summary';
+import Support from '../../Components/Support/Support';
 
 
 const Home = () => {
@@ -22,12 +23,12 @@ const Home = () => {
     };
 
     return (
-        <div>
+        <div className='max-w-7xl mx-auto'>
             <div className="flex justify-center bg-white w-fit mx-auto rounded-lg">
                 {times.map((time, index) => (
-                    <button 
-                        key={index} 
-                        autoFocus={time === '5 Minutes'} 
+                    <button
+                        key={index}
+                        autoFocus={time === '5 Minutes'}
                         className={`text-xs font-semibold py-2 px-3 md:px-6 rounded-lg outline-none ${focusedButton === time ? 'text-white bg-[#387ED1]' : 'text-[#9babc6]'}`}
                         onFocus={() => handleFocus(time)}
                     >
@@ -35,7 +36,10 @@ const Home = () => {
                     </button>
                 ))}
             </div>
-            <Summary focusedButton={focusedButton}/>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4 my-8'>
+            <Summary focusedButton={focusedButton} />
+            <Support focusedButton={focusedButton}/>
+            </div>
         </div>
     );
 };
