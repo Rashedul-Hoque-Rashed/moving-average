@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Summary from '../../Components/Summary/Summary';
 
 
 const Home = () => {
@@ -34,7 +35,7 @@ const Home = () => {
                     </button>
                 ))}
             </div>
-            
+            <Summary focusedButton={focusedButton}/>
         </div>
     );
 };
