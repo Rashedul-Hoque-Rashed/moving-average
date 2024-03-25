@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Summary from '../../Components/Summary/Summary';
 import Support from '../../Components/Support/Support';
+import Averages from '../../Components/Averages/Averages';
 
 
 const Home = () => {
@@ -37,8 +38,9 @@ const Home = () => {
                 ))}
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-4 my-8'>
-            <Summary focusedButton={focusedButton} />
-            <Support focusedButton={focusedButton}/>
+                <Summary focusedButton={focusedButton} />
+                <Support focusedButton={focusedButton} />
+                <Averages focusedButton={focusedButton} />
             </div>
         </div>
     );
